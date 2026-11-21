@@ -42,13 +42,20 @@ answer it in place; the agent picks up where it stopped.
   under the text area and the question stays open. An empty answer is allowed: the agent is told
   "done".
 - Esc or Cancel closes the dialog without sending.
+- **Folding**, only when a layout gives the panel props `{ "collapse": "<block id>" }`: while no
+  question waits, that block shrinks to a 52 px strip with the mark alone, where the brand row has
+  it (hover: "No questions waiting"). A new question, or a read that fails, opens it again to the
+  width it had (320 px at first). It folds and opens only when that changes, so a width the person
+  drags stays until the next change. Without the prop the panel never folds.
 
 ## Built from
 
 - One mod, `mods/selan-reactor/`: `main.js`, `mod.json` (`place: right`, `size: 320`) and
   `reactor.svg`. The same mod draws the dialog when opened with props `{ question }`.
-- `herdr` functions: `exec`, `theme`, `settings`, `props`, `run`, `openOverlay`, `closeOverlay`,
-  `notify`, `playSound("blocked")`, `setBadge`, `checking`, `nextCommand`. Commands it answers:
+- `herdr` functions: `exec`, `theme`, `settings`, `props`, `run`, `layout`, `openOverlay`, `closeOverlay`,
+  `notify`, `playSound("blocked")`, `setBadge`, `checking`, `nextCommand`. Folding runs
+  `layout.resize` on the named block and draws again from the root's `on_size_change`, since the
+  new width lands after the render that asked for it. Commands it answers:
   `selan-reactor.refresh` and `selan-reactor.open`.
 - **Runs one program: the Selan CLI**, which holds the person's sign-in, so the mod never handles a
   token. `selan reactor questions --json` prints
