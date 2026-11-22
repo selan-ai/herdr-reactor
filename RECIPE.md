@@ -21,10 +21,11 @@ answer it in place; the agent picks up where it stopped.
   first or below the last. Hover fills the row with `hover`.
 - **Empty, loading and failure** are one `dim` 12 px line in the same inset: "No questions waiting.",
   "Reading Reactor…", "Could not read Reactor: <reason>".
-- **The dialog** (560 × 520, `popover`, 20 px padding, 16 px between parts): the mark at 28 px with
+- **The dialog** (560 wide, as tall as what it holds; 520 tall when the details run past about eight lines
+  or 560 characters, `popover`, 20 px padding, 16 px between parts): the mark at 28 px with
   8 px corners beside the agent's name (15 px semibold on a 17 px line) over `workspace · age`
   (11.5 px `dim` on a 13 px line, 3 px apart), "Esc" at the right in 11 px `dim`; the question in
-  13 px medium; the agent's details in `muted`, scrolling; a 4-row text area "Your answer" with
+  13 px medium; the agent's details in `muted`, scrolling only in the tall dialog; a 4-row text area "Your answer" with
   9 px corners, `input` border, `background` fill; Cancel (`raised`) and Send (`solid`), 32 px
   tall, 8 px corners, right-aligned 8 px apart.
 - **The Dock badge** is the number waiting, cleared at none.
